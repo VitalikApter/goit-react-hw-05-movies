@@ -1,29 +1,36 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Section from 'components/Section/Section';
-import { fetchData, parseDataForMovieList } from 'components/helpers';
+import { fetchData, parseDataForMovieList } from 'components/helpers/Api';
 import QueryPath from 'constants/QueryPath/QueryPath';
 import { useLocation } from 'react-router-dom';
+import Loader from 'components/Loader/Loader';
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
   const [treadingList, setTreadingList] = useState([]);
-  const firstHomeRender = useRef(true);
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (firstHomeRender.current) {
-      fetchData(QueryPath.trending).then(({ data: { results } }) => {
+    setIsLoading(true);
+    fetchData(QueryPath.trending)
+      .then(({ data: { results } }) => {
         const treadingData = parseDataForMovieList(results);
         setTreadingList(treadingData);
+      })
+      .catch(err => {
+        toast.error('Something wrong');
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-
-      firstHomeRender.current = false;
-    }
   }, []);
 
   return (
     <>
-      {!!treadingList.length && (
+      {isLoading && <Loader />}
+      {treadingList.length > 0 && (
         <Section title="Trending today">
           <MoviesList moviesList={treadingList} location={location} />
         </Section>

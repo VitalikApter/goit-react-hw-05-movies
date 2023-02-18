@@ -1,17 +1,18 @@
 import { lazy, Suspense } from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from 'components/Header/Header';
-import Cast from 'pages/MovieCard/Cast/Cast';
-import Reviews from 'pages/MovieCard/Reviews/Reviews';
+
 import { ToastContainer } from 'react-toastify';
 import Loader from 'components/Loader/Loader';
-import { BrowserRouter } from 'components/helpers';
+
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('pages/MoviesPage/MoviesPage'));
-const MovieCard = lazy(() => import('pages/MovieCard/MovieCard'));
+const MovieCard = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('components/Cast/Cast'));
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 export const App = () => {
   return (
@@ -28,7 +29,7 @@ export const App = () => {
         pauseOnHover
         theme="colored"
       />
-      <BrowserRouter basename="/goit-react-hw-05-movies">
+      
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Header />}>
@@ -41,7 +42,7 @@ export const App = () => {
             </Route>
           </Routes>
         </Suspense>
-      </BrowserRouter>
+      
     </>
   );
 };

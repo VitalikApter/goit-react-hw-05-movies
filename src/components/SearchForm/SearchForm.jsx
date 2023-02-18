@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Section from 'components/Section/Section';
 import css from './SearchForm.module.css';
@@ -39,3 +40,7 @@ const SearhForm = ({ onSubmit }) => {
 };
 
 export default SearhForm;
+
+SearhForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

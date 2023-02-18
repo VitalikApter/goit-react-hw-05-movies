@@ -1,15 +1,19 @@
+import PropTypes from 'prop-types';
+
 import css from './MoviesList.module.css';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const MoviesList = ({ moviesList, title, location }) => {
+const MoviesList = ({ moviesList }) => {
+  const location = useState('');
   return (
     <div className={classNames(css.container, css.movies_list)}>
       <ul className={css.movies_list}>
-        {moviesList.map(({ id, title }) => (
+        {moviesList.map(({ id, title, name }) => (
           <li key={id} className={css.movies_list__item}>
             <Link to={`/movies/${id}`} state={{ from: location }}>
-              {title}
+              {title || name}
             </Link>
           </li>
         ))}
@@ -19,3 +23,13 @@ const MoviesList = ({ moviesList, title, location }) => {
 };
 
 export default MoviesList;
+
+MoviesList.propTypes = {
+  moviesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      name: PropTypes.string,
+    }).isRequired
+  ).isRequired,
+};

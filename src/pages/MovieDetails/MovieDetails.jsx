@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import Section from 'components/Section/Section';
-import { imagePath, fetchData } from 'components/helpers';
+import { imagePath, fetchData } from 'components/helpers/Api';
 import {
   Link,
   NavLink,
@@ -9,7 +9,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import QueryPath from 'constants/QueryPath/QueryPath';
-import css from './MovieCard.module.css';
+import css from './MovieDetails.module.css';
 import Loader from 'components/Loader/Loader';
 import { toast } from 'react-toastify';
 

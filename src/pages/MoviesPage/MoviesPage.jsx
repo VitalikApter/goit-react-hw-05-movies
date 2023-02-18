@@ -3,7 +3,7 @@ import MoviesList from 'components/MoviesList/MoviesList';
 import SearhForm from 'components/SearchForm/SearchForm';
 import Section from 'components/Section/Section';
 import QueryPath from 'constants/QueryPath/QueryPath';
-import { fetchData } from 'components/helpers';
+import { fetchData } from 'components/helpers/Api';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
@@ -41,9 +41,9 @@ const MoviesPage = () => {
     <Section>
       <>
         <SearhForm onSubmit={onSubmitHandler} />
-        {isLoading && !moviesList.length ? (
-          <Loader />
-        ) : (
+
+        {isLoading && <Loader />}
+        {moviesList.length > 0 && (
           <MoviesList moviesList={moviesList} location={location} />
         )}
       </>
