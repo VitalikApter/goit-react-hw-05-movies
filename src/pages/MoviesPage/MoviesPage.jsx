@@ -6,7 +6,7 @@ import QueryPath from 'constants/QueryPath/QueryPath';
 import { fetchData } from 'components/helpers/Api';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const MoviesPage = () => {
@@ -15,8 +15,6 @@ const MoviesPage = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
-
-  const location = useLocation();
 
   const onSubmitHandler = fromSearchValue => {
     setSearchParams({ query: fromSearchValue });
@@ -43,9 +41,7 @@ const MoviesPage = () => {
         <SearhForm onSubmit={onSubmitHandler} />
 
         {isLoading && <Loader />}
-        {moviesList.length > 0 && (
-          <MoviesList moviesList={moviesList} location={location} />
-        )}
+        {moviesList.length > 0 && <MoviesList moviesList={moviesList} />}
       </>
     </Section>
   );

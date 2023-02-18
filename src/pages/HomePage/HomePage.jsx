@@ -3,13 +3,12 @@ import MoviesList from 'components/MoviesList/MoviesList';
 import Section from 'components/Section/Section';
 import { fetchData, parseDataForMovieList } from 'components/helpers/Api';
 import QueryPath from 'constants/QueryPath/QueryPath';
-import { useLocation } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { toast } from 'react-toastify';
 
 const HomePage = () => {
   const [treadingList, setTreadingList] = useState([]);
-  const location = useLocation();
+
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const HomePage = () => {
       {isLoading && <Loader />}
       {treadingList.length > 0 && (
         <Section title="Trending today">
-          <MoviesList moviesList={treadingList} location={location} />
+          <MoviesList moviesList={treadingList} />
         </Section>
       )}
     </>
