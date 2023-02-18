@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import css from './MoviesList.module.css';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+
+import { useLocation } from 'react-router-dom';
 
 const MoviesList = ({ moviesList }) => {
-  const location = useState('');
+  const location = useLocation('');
   return (
     <div className={classNames(css.container, css.movies_list)}>
       <ul className={css.movies_list}>
