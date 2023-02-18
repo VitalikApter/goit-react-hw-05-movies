@@ -1,16 +1,17 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {  Routes, Route } from 'react-router-dom';
 import Header from 'components/Header/Header';
-import MovieCard from 'components/MovieCard/MovieCard';
-import Cast from 'components/MovieCard/Cast/Cast';
-import Reviews from 'components/MovieCard/Reviews/Reviews';
+import Cast from 'pages/MovieCard/Cast/Cast';
+import Reviews from 'pages/MovieCard/Reviews/Reviews';
 import { ToastContainer } from 'react-toastify';
 import Loader from 'components/Loader/Loader';
+import { BrowserRouter } from 'components/helpers';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('pages/MoviesPage/MoviesPage'));
+const MovieCard = lazy(() => import('pages/MovieCard/MovieCard'));
 
 export const App = () => {
   return (

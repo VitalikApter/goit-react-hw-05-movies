@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import Section from 'components/Section/Section';
-import { fetchData, imagePath } from 'components/helpers';
+import { imagePath, fetchData } from 'components/helpers';
 import {
   Link,
   NavLink,
